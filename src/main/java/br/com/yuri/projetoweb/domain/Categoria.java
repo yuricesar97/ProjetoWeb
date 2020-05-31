@@ -11,12 +11,14 @@ import java.util.Objects;
 
 @Audited
 @Entity
-public class Categoria implements Serializable {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+   public Categoria(){};
 
     public Categoria(Integer id, String nome) {
         this.id = id;
