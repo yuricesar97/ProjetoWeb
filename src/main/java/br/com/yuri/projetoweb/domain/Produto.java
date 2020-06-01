@@ -3,28 +3,38 @@ package br.com.yuri.projetoweb.domain;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Audited
 @Entity
-public class Categoria {
+public class Produto {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
+    private  String nome;
+    private Double preco;
 
-    @ManyToMany(mappedBy = "cat")
-    private List<Produto> produtos = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name= "PRODUTO_CATEGORIA",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name= "categoria_id")
+    )
+    private List<Categoria> cat = new ArrayList<>();
 
-   public Categoria(){};
 
-    public Categoria(Integer id, String nome) {
+
+    public Produto(){
+
+
+    }
+
+    public Produto(Integer id, String nome, Double preco) {
         this.id = id;
         this.nome = nome;
+        this.preco = preco;
     }
 
     public Integer getId() {
@@ -43,17 +53,25 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Double getPreco() {
+        return preco;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public List<Categoria> getCat() {
+        return cat;
+    }
+
+    public void setCat(List<Categoria> cat) {
+        this.cat = cat;
     }
 
     @Override
     public String toString() {
-        return "Categoria{" +
+        return "Produto{" +
                 "id=" + id +
                 '}';
     }
@@ -62,15 +80,15 @@ public class Categoria {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
-        return Objects.equals(id, categoria.id) &&
-                Objects.equals(nome, categoria.nome);
+        Produto produto = (Produto) o;
+        return Objects.equals(id, produto.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome);
+        return Objects.hash(id);
     }
+
 
 
 }
