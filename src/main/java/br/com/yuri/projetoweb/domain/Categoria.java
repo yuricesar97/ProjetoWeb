@@ -1,9 +1,7 @@
 package br.com.yuri.projetoweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -13,6 +11,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Audited
 @Entity
@@ -27,7 +27,6 @@ public class Categoria {
     @ManyToMany(mappedBy = "cat")
     private List<Produto> produtos = new ArrayList<>();
 
-   public Categoria(){};
 
     public Categoria(Integer id, String nome) {
         this.id = id;

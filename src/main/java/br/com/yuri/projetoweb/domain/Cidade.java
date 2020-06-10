@@ -2,15 +2,15 @@ package br.com.yuri.projetoweb.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 @Entity
 public class Cidade {
 
@@ -24,7 +24,6 @@ public class Cidade {
    @JoinColumn( name = "estado_id")
     private Estado estado;
 
-    public Cidade(){}
 
     public Cidade(Integer id, String nome ,Estado estado) {
         this.id = id;

@@ -1,9 +1,7 @@
 package br.com.yuri.projetoweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 @Entity
 public class Estado {
 
@@ -25,7 +25,6 @@ public class Estado {
   @OneToMany(mappedBy = "estado")
   private List<Cidade> cidades = new ArrayList<>();
 
-   public Estado(){}
 
     public Estado(Integer id, String nome) {
         this.id = id;

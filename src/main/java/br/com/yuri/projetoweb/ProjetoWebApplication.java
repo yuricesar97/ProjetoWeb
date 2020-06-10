@@ -1,13 +1,7 @@
 package br.com.yuri.projetoweb;
 
-import br.com.yuri.projetoweb.domain.Categoria;
-import br.com.yuri.projetoweb.domain.Cidade;
-import br.com.yuri.projetoweb.domain.Estado;
-import br.com.yuri.projetoweb.domain.Produto;
-import br.com.yuri.projetoweb.repositories.CategoriaRepository;
-import br.com.yuri.projetoweb.repositories.CidadeRepository;
-import br.com.yuri.projetoweb.repositories.EstadoRepository;
-import br.com.yuri.projetoweb.repositories.ProdutoRepository;
+import br.com.yuri.projetoweb.domain.*;
+import br.com.yuri.projetoweb.repositories.*;
 import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,6 +24,12 @@ public class ProjetoWebApplication implements CommandLineRunner {
 	@Autowired
 	private EstadoRepository est;
 
+	@Autowired
+	private ClienteRepository cli;
+
+	@Autowired
+	private EnderecoRepository end;
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoWebApplication.class, args);
 	}
@@ -39,6 +39,7 @@ public class ProjetoWebApplication implements CommandLineRunner {
 
 		Categoria cat1 = new Categoria(null,"Informatica");
 		Categoria cat2 = new Categoria(null,"Escritorio");
+
 
 		Produto p1 = new Produto(null, "Computador",2000.00 );
 		Produto p2 = new Produto(null, "Impressora",800.00 );
@@ -68,6 +69,17 @@ public class ProjetoWebApplication implements CommandLineRunner {
 
 		est.saveAll(Arrays.asList(est1,est2));
 		city.saveAll((Arrays.asList(cit1,cit2,cit3)));
+
+		Cliente cli1 = new Cliente(null,"Maria Silva","maria@gmail.com","46844429978", TipoPessoa.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("993658585","985665521"));
+
+        Endereco e1 = new Endereco(null,"Rua Flores 300", "Apto 303", "Jardim","3656984", cli1, cit1);
+		Endereco e2 = new Endereco(null,"Avenida Matos 300", " 150", "Sala 800","3656984", cli1, cit2);
+
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+
+		cli.saveAll(Arrays.asList(cli1));
+		end.saveAll(Arrays.asList(e1,e2));
 
 
 

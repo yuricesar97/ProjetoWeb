@@ -1,9 +1,7 @@
 package br.com.yuri.projetoweb.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -14,6 +12,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
+@NoArgsConstructor
 @Entity
 @Audited
 public class Produto {
@@ -32,11 +32,6 @@ public class Produto {
             inverseJoinColumns = @JoinColumn(name= "categoria_id")
     )
     private List<Categoria> cat = new ArrayList<>();
-
-
-
-    public Produto(){
-    }
 
     public Produto(Integer id, String nome, Double preco) {
         this.id = id;
