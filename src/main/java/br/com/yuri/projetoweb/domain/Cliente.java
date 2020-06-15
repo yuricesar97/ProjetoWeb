@@ -1,6 +1,8 @@
 package br.com.yuri.projetoweb.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,6 +33,7 @@ public class Cliente {
     private String cpfOuCnpj;
     private Integer tipoCliente;
 
+    @JsonManagedReference
     @Getter
     @Setter
     @OneToMany(mappedBy = "cliente")

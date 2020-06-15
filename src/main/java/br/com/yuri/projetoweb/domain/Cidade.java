@@ -2,6 +2,7 @@ package br.com.yuri.projetoweb.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,9 +20,9 @@ public class Cidade {
     private Integer id;
     private String nome;
 
-   @JsonBackReference
-   @ManyToOne
-   @JoinColumn( name = "estado_id")
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn( name = "estado_id")
     private Estado estado;
 
 
