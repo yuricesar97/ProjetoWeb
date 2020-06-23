@@ -45,6 +45,11 @@ public class Cliente {
      @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
+
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoPessoa tipoClinete) {
         Id = id;
         this.nome = nome;
