@@ -1,6 +1,8 @@
 package br.com.yuri.projetoweb.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ public abstract class Pagamento {
 
     private Integer estado;
 
+    @JsonBackReference
     @Getter
     @Setter
     @OneToOne

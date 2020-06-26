@@ -1,6 +1,7 @@
 package br.com.yuri.projetoweb.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import javax.persistence.Entity;
 @Entity
 public class ItemPedido {
 
+    @JsonIgnore
     @EmbeddedId //id embutido em um tipo auxiliar
     private  ItemPedidoPK id = new ItemPedidoPK();
 
@@ -27,6 +29,8 @@ public class ItemPedido {
         this.quantidade = quantidade;
         this.preco = preco;
     }
+
+    @JsonIgnore      // tudo que começa com get tende a serializar
 
     public Pedido getPedido(){
         return id.getPedido();

@@ -45,6 +45,7 @@ public class Cliente {
      @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
+    @JsonBackReference
     @Getter
     @Setter
     @OneToMany(mappedBy = "cliente")

@@ -1,6 +1,7 @@
 package br.com.yuri.projetoweb.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -14,7 +15,9 @@ import java.util.Date;
 @Entity
 public class PagamentoComBoleto extends Pagamento{
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataVencimento;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataPagamento;
 
     public PagamentoComBoleto(Date dataVencimento, Date dataPagamento) {
