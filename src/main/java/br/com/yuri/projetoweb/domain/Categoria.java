@@ -14,7 +14,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Audited
 @Entity
 public class Categoria {
 
