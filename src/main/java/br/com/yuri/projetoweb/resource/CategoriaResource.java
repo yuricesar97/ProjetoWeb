@@ -6,10 +6,10 @@ import br.com.yuri.projetoweb.services.CategoriaService;
 import ch.qos.logback.core.boolex.EvaluationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value="/categorias")
@@ -21,6 +21,14 @@ public class CategoriaResource {
         public ResponseEntity<Categoria> find(@PathVariable Integer id){
             Categoria cat = service.findId(id);
             return ResponseEntity.ok().body(cat);
+    }
+
+    @RequestMapping(method = RequestMethod.POST ) //RequestBody Faz json ser convertido em obj java
+    public ResponseEntity<Void> insert (@RequestBody Categoria obj){
+            Categoria cat = service.insert(obj);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}").buildAndExpand(obj.getId()).toUri();
+            return ResponseEntity.created(uri).build();
 
     }
 }

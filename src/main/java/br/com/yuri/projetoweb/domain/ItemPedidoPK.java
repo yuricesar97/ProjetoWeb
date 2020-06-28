@@ -1,6 +1,5 @@
 package br.com.yuri.projetoweb.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 

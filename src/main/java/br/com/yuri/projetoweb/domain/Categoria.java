@@ -1,8 +1,6 @@
 package br.com.yuri.projetoweb.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,7 +20,6 @@ public class Categoria {
     private Integer id;
     private String nome;
 
-    @JsonManagedReference  // para trazer as categorias de produtos
     @ManyToMany(mappedBy = "cat")
     private List<Produto> produtos = new ArrayList<>();
 

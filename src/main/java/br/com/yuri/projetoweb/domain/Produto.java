@@ -23,7 +23,7 @@ public class Produto {
     private Double preco;
 
 
-    @JsonBackReference //Para tratar serialização do outro lado ja esta trazendo as objjetos
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name= "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),

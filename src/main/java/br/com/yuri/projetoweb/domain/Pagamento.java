@@ -2,6 +2,7 @@ package br.com.yuri.projetoweb.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -21,7 +22,7 @@ public abstract class Pagamento {
 
     private Integer estado;
 
-    @JsonBackReference
+    @JsonIgnore
     @Getter
     @Setter
     @OneToOne

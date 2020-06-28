@@ -1,10 +1,8 @@
 package br.com.yuri.projetoweb.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,7 +31,6 @@ public class Cliente {
     private String cpfOuCnpj;
     private Integer tipoCliente;
 
-    @JsonManagedReference
     @Getter
     @Setter
     @OneToMany(mappedBy = "cliente")
@@ -45,7 +42,7 @@ public class Cliente {
      @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @Getter
     @Setter
     @OneToMany(mappedBy = "cliente")
