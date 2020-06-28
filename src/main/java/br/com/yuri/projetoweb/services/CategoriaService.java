@@ -21,7 +21,11 @@ public class CategoriaService {
     }
 
     public Categoria insert(Categoria categoria){
-        categoria.setId(null);
+        categoria.setId(null); //Id valendo nulo ele insere
        return repo.save(categoria);
+    }
+    public Categoria update(Categoria categoria){
+        findId(categoria.getId()); //vejo se existe o id
+        return repo.save(categoria); //Id valendo nulo atualiza
     }
 }
