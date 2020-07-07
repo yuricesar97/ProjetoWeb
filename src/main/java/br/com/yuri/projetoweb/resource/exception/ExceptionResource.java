@@ -1,5 +1,6 @@
 package br.com.yuri.projetoweb.resource.exception;
 
+import br.com.yuri.projetoweb.services.exception.DataIntegrityException;
 import br.com.yuri.projetoweb.services.exception.ObjectException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,5 +17,11 @@ public class ExceptionResource {
     public ResponseEntity<ErroPadrao> objectNot(ObjectException e, HttpServletRequest request){
         ErroPadrao erro = new ErroPadrao(HttpStatus.NOT_FOUND.value(),e.getMessage(),System.currentTimeMillis());
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
+    }
+
+    @ExceptionHandler(DataIntegrityException.class)
+    public ResponseEntity<ErroPadrao> dataIntegrity(DataIntegrityException e, HttpServletRequest request){
+        ErroPadrao erro = new ErroPadrao(HttpStatus.BAD_REQUEST.value(),e.getMessage(),System.currentTimeMillis());
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
     }
 }
